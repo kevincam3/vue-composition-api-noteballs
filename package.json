@@ -1,0 +1,27 @@
+{
+  "name": "vue-composition-api-noteballs",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.6.0",
+    "bulma": "^0.9.4",
+    "pinia": "^2.0.27",
+    "prettier": "^2.7.1",
+    "vue": "^3.2.41",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.2",
+    "schemats": "^3.0.3",
+    "vite": "^3.1.8"
+  },
+  "prettier": {
+    "singleAttributePerLine": true,
+    "bracketSpacing": true,
+    "bracketSameLine": true
+  }
+}
