@@ -66,5 +66,3 @@ const modals = reactive({
       v-if="modals.deleteNote" />
   </div>
 </template>
-
-<style scoped></style>

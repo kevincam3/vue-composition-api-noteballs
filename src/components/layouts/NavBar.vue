@@ -74,7 +74,7 @@ onClickOutside(navbarMenuRef, () => (showMobileNave.value = false), {
   </nav>
 </template>
 
-<style>
+<style scoped>
 @media (max-width: 1023px) {
   .navbar-menu {
     position: absolute;
