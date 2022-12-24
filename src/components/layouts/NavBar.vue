@@ -1,3 +1,25 @@
+<script setup lang="ts">
+/*
+  imports
+ */
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
+/*
+  mobile nave
+ */
+
+const showMobileNave = ref(false);
+
+/*
+  Click outside to close
+ */
+const navbarMenuRef = ref(null);
+const navbarBurgerRef = ref(null);
+onClickOutside(navbarMenuRef, () => (showMobileNave.value = false), {
+  ignore: [navbarBurgerRef],
+});
+</script>
 <template>
   <nav
     class="navbar is-success"
@@ -51,28 +73,6 @@
     </div>
   </nav>
 </template>
-<script setup>
-/*
-  imports
- */
-import { ref } from "vue";
-import { onClickOutside } from "@vueuse/core";
-
-/*
-  mobile nave
- */
-
-const showMobileNave = ref(false);
-
-/*
-  Click outside to close
- */
-const navbarMenuRef = ref(null);
-const navbarBurgerRef = ref(null);
-onClickOutside(navbarMenuRef, () => (showMobileNave.value = false), {
-  ignore: [navbarBurgerRef],
-});
-</script>
 
 <style>
 @media (max-width: 1023px) {

@@ -1,3 +1,22 @@
+<script setup lang="ts">
+/*
+  imports
+ */
+import { useNotesStore } from "@/stores/notes.js";
+import { vAutofocus } from "@/directives/vAutofocus";
+import { useWatchCharacters } from "@/composables/useWatchCharacters";
+import { ref } from "vue";
+
+/*
+  store
+ */
+const notesStore = useNotesStore();
+/*
+  love noteballs
+ */
+const loveNoteBalls = ref("");
+useWatchCharacters(loveNoteBalls, 50);
+</script>
 <template>
   <div class="stats">
     <table class="table is-fullwidth">
@@ -26,22 +45,3 @@
       placeholder="Do you love noteballs?" />
   </div>
 </template>
-<script setup>
-/*
-  imports
- */
-import { useNotesStore } from "@/stores/notes.js";
-import { vAutofocus } from "@/directives/vAutofocus";
-import { useWatchCharacters } from "@/composables/useWatchCharacters";
-import { ref } from "vue";
-
-/*
-  store
- */
-const notesStore = useNotesStore();
-/*
-  love noteballs
- */
-const loveNoteBalls = ref("");
-useWatchCharacters(loveNoteBalls, 50);
-</script>

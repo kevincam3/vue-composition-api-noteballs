@@ -7,7 +7,7 @@ export const useNotesStore = defineStore("NotesStore", {
         {
           id: "id1",
           content:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eaque esse ex quaerat ut? Amet commodi cumque iure libero magnam possimus sequi similique soluta vel vero.",
+            "John Kerry believes in the Constitutional freedoms that have made our country the envy of the world, and he will never sacrifice our basic liberties, nor use faith as a wedge to divide us. But it is where we start. Our problems must be dealt with through partnership; progress must be shared. That commitment is at the core of the Treaty, and it must be kept for all who fully abide by it. But we can only achieve it together.",
         },
         {
           id: "id2",
@@ -17,7 +17,7 @@ export const useNotesStore = defineStore("NotesStore", {
     };
   },
   actions: {
-    addNote(newNoteContent) {
+    addNote(newNoteContent: string) {
       let currentTime = new Date().getTime(),
         id = currentTime.toString();
 
@@ -29,17 +29,18 @@ export const useNotesStore = defineStore("NotesStore", {
       //add the note to the list of existing notes
       this.notes.unshift(note);
     },
-    deleteNote(idToDelete) {
+    deleteNote(idToDelete: string) {
       this.notes = this.notes.filter((note) => note.id !== idToDelete);
     },
-    updateNote(id, content) {
+    updateNote(id: string, content: string) {
       let index = this.notes.findIndex((note) => note.id === id);
       this.notes[index].content = content;
     },
   },
   getters: {
     getNoteContent: (state) => {
-      return (id) => state.notes.filter((note) => note.id === id)[0].content;
+      return (id: string) =>
+        state.notes.filter((note) => note.id === id)[0].content;
     },
     totalNotesCount: (state) => state.notes.length,
     totalCharactersCount: (state) => {

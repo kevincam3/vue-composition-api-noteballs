@@ -1,23 +1,23 @@
-import ViewNotes from "@/views/ViewNotes.vue";
-import ViewEditNote from "@/views/ViewEditNote.vue";
-import ViewStats from "@/views/ViewStats.vue";
+import PageNotes from "@/pages/PageNotes.vue";
+import PageEditNote from "@/pages/PageEditNote.vue";
+import PageStats from "@/pages/PageStats.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
     path: "/",
     name: "notes",
-    component: ViewNotes,
+    component: PageNotes,
   },
   {
     path: "/editNote/:id",
     name: "edit-notes",
-    component: ViewEditNote,
+    component: PageEditNote,
   },
   {
     path: "/stats",
     name: "stats",
-    component: ViewStats,
+    component: PageStats,
   },
 ];
 
