@@ -1,7 +1,8 @@
+import { createRouter, createWebHistory } from "vue-router";
 import PageNotes from "@/pages/PageNotes.vue";
 import PageEditNote from "@/pages/PageEditNote.vue";
 import PageStats from "@/pages/PageStats.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import Page404 from "@/pages/Page404.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/stats",
     name: "stats",
     component: PageStats,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "404",
+    component: Page404,
   },
 ];
 
