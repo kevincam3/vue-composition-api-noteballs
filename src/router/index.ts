@@ -1,29 +1,25 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PageNotes from "@/pages/PageNotes.vue";
-import PageEditNote from "@/pages/PageEditNote.vue";
-import PageStats from "@/pages/PageStats.vue";
-import Page404 from "@/pages/Page404.vue";
 
 const routes = [
   {
     path: "/",
     name: "notes",
-    component: PageNotes,
+    component: () => import("@/pages/PageNotes.vue"),
   },
   {
     path: "/editNote/:id",
     name: "edit-notes",
-    component: PageEditNote,
+    component: () => import("@/pages/PageEditNote.vue"),
   },
   {
     path: "/stats",
     name: "stats",
-    component: PageStats,
+    component: () => import("@/pages/PageStats.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "404",
-    component: Page404,
+    component: () => import("@/pages/Page404.vue"),
   },
 ];
 
