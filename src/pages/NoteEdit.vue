@@ -2,9 +2,9 @@
 /*
   imports
  */
-import AddEditNote from "@/components/Notes/AddEditNote.vue";
+import AddEditNote from "@/components/NoteItemAddEdit.vue";
 import { ref } from "vue";
-import { useNotesStore } from "@/stores/notes.js";
+import { useNotesStore } from "@/stores/notes";
 import { useRoute, useRouter } from "vue-router";
 
 /*

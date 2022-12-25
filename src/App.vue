@@ -2,7 +2,7 @@
 /*
   imports
  */
-import NavBar from "@/components/layouts/NavBar.vue";
+import NavBar from "@/components/NavBar.vue";
 </script>
 
 <template>

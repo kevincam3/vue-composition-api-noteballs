@@ -3,8 +3,8 @@
   imports
  */
 import { computed, reactive } from "vue";
-import { useNotesStore } from "@/stores/notes.js";
-import ModalDeleteNote from "@/components/Notes/ModalDeleteNote.vue";
+import { useNotesStore } from "@/stores/notes";
+import ModalDeleteNote from "@/components/NoteItemDeleteModal.vue";
 /*
   store
  */

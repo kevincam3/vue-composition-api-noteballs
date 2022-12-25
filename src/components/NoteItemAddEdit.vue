@@ -53,7 +53,6 @@ defineExpose({
     <div class="field">
       <div class="control">
         <textarea
-          maxlength="100"
           v-autofocus
           ref="textareaRef"
           :value="modelValue"

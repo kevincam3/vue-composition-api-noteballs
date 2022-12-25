@@ -4,9 +4,9 @@
   imports
  */
 import { ref } from "vue";
-import Note from "@/components/Notes/Note.vue";
-import AddEditNote from "@/components/Notes/AddEditNote.vue";
-import { useNotesStore } from "@/stores/notes.js";
+import Note from "@/components/NoteItem.vue";
+import AddEditNote from "@/components/NoteItemAddEdit.vue";
+import { useNotesStore } from "@/stores/notes";
 import { useWatchCharacters } from "@/composables/useWatchCharacters";
 /*
   store
@@ -14,7 +14,7 @@ import { useWatchCharacters } from "@/composables/useWatchCharacters";
 const notesStore = useNotesStore();
 
 /*
-  Notes
+  notes
  */
 
 const addNote = () => {
