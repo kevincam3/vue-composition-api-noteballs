@@ -3,6 +3,20 @@
   imports
  */
 import NavBar from "@/components/NavBar.vue";
+import { useNotesStore } from "@/stores/NotesStore";
+import { onMounted } from "vue";
+
+/*
+  store
+ */
+const { getNotes } = useNotesStore();
+
+/*
+  mounted
+ */
+onMounted(() => {
+  getNotes();
+});
 </script>
 
 <template>

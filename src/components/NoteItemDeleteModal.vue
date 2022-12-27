@@ -4,7 +4,7 @@
  */
 import { onClickOutside } from "@vueuse/core";
 import { onMounted, onUnmounted, ref } from "vue";
-import { useNotesStore } from "@/stores/notes";
+import { useNotesStore } from "@/stores/NotesStore";
 /*
   props
  */
@@ -43,7 +43,7 @@ onClickOutside(modalCardRef, closeModal);
 /*
   keyboard control
  */
-const handleKeyboard = (e) => {
+const handleKeyboard = (e: KeyboardEvent) => {
   if (e.key === "Escape") closeModal();
 };
 onMounted(() => {
@@ -67,9 +67,7 @@ onUnmounted(() => {
           class="delete"
           aria-label="close"></button>
       </header>
-      <section class="modal-card-body">
-        Are you sure you want to delete this note?
-      </section>
+      <section class="modal-card-body">Are you sure you want to delete this note?</section>
       <footer class="modal-card-foot is-justify-content-flex-end">
         <button
           class="button"

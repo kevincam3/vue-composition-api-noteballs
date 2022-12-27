@@ -9,7 +9,8 @@
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": false,
+    "sourceMap": true,
+    "allowJs": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": [

@@ -2,20 +2,16 @@
 /*
   imports
  */
-import { computed, reactive } from "vue";
-import { useNotesStore } from "@/stores/notes";
+import { computed, PropType, reactive } from "vue";
 import ModalDeleteNote from "@/components/NoteItemDeleteModal.vue";
-/*
-  store
- */
-const notesStore = useNotesStore();
+import Note = Types.Note;
 
 /*
   props
  */
 const props = defineProps({
   note: {
-    type: Object,
+    type: Object as PropType<Note>,
     required: true,
   },
 });
@@ -40,7 +36,7 @@ const modals = reactive({
   <div class="card mb-4">
     <div class="card-content">
       <div class="content">
-        {{ note.content }}
+        {{ props.note.content }}
       </div>
       <div class="has-text-right has-text-grey-light mt-2">
         <small>{{ characterLength }}</small>
@@ -48,7 +44,7 @@ const modals = reactive({
     </div>
     <footer class="card-footer">
       <RouterLink
-        :to="`/editNote/${note.id}`"
+        :to="`/editNote/${props.note.id}`"
         href="#"
         class="card-footer-item">
         Edit

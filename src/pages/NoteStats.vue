@@ -2,7 +2,7 @@
 /*
   imports
  */
-import { useNotesStore } from "@/stores/notes";
+import { useNotesStore } from "@/stores/NotesStore";
 import { vAutofocus } from "@/directives/vAutofocus";
 import { useWatchCharacters } from "@/composables/useWatchCharacters";
 import { ref } from "vue";

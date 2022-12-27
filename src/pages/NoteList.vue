@@ -6,7 +6,7 @@
 import { ref } from "vue";
 import Note from "@/components/NoteItem.vue";
 import AddEditNote from "@/components/NoteItemAddEdit.vue";
-import { useNotesStore } from "@/stores/notes";
+import { useNotesStore } from "@/stores/NotesStore";
 import { useWatchCharacters } from "@/composables/useWatchCharacters";
 /*
   store

@@ -29,6 +29,7 @@
   "prettier": {
     "singleAttributePerLine": true,
     "bracketSpacing": true,
-    "bracketSameLine": true
+    "bracketSameLine": true,
+    "printWidth": 120
   }
 }
