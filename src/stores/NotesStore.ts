@@ -47,7 +47,7 @@ export const useNotesStore = defineStore("NotesStore", {
     async getNotes() {
       onSnapshot(notesCollectionQuery, (querySnapshot) => {
         // We created this local array variable to store the notes we get from firebase.
-        let notes: Array<Note> = [];
+        const notes: Array<Note> = [];
         querySnapshot.forEach((doc) => {
           let note: Note = {
             id: doc.id,
