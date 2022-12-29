@@ -49,10 +49,16 @@ useWatchCharacters(newNote);
     <!-- End: Display the add note textarea -->
 
     <!-- Start: list all the notes below the form to add a new note -->
-    <Note
-      v-for="note in notesStore.notes"
-      :key="note.id"
-      :note="note" />
+    <progress
+      v-if="!notesStore.notesLoaded"
+      class="progress is-large is-success"
+      max="100" />
+    <div v-else>
+      <Note
+        v-for="note in notesStore.notes"
+        :key="note.id"
+        :note="note" />
+    </div>
     <!-- End: list all the notes below the form to add a new note -->
   </div>
 </template>

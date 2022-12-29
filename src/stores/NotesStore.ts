@@ -1,5 +1,5 @@
 /*
-  pinia import that we need to do to make this file a pina store
+  pinia import that we need to do to be able to make this file a pina store
  */
 import { defineStore } from "pinia";
 
@@ -7,16 +7,21 @@ import { defineStore } from "pinia";
   Firebase imports
  */
 import { collection, onSnapshot, doc, deleteDoc, addDoc, updateDoc, query, orderBy } from "firebase/firestore";
-import { db } from "@/js/firebase";
+import { firestore } from "@/js/firebase";
 
-// This was done to DRY up the code since in Firebase we access the collection multiple times
-const notesCollectionRef = collection(db, "notes");
-// This is the firebase way of getting all the documents in a collection in realtime.
+// This was done to DRY (Don't Repeat Yourself) up the code since in Firebase we access the collection multiple times
+// The collection is basically the table in a database, just in a NoSQL database like Firebase it's called a collection
+const notesCollectionRef = collection(firestore, "notes");
+
+// This is the firebase way of getting all the documents/rows in a collection/table.
+// We're using the orderBy function to sort the documents by the date field in descending order
 const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
 
 /*
   Here we are using a typescript feature called "type aliasing" https://www.typescriptlang.org/docs/handbook/namespaces.html#aliases
   Note this is not a normal import statement, it is a type aliasing statement.
+  Here we're importing the Note type from the Note type file. This is the type that we will use to define the notes in the store
+  Types here is the namespace we created in the Note type file
  */
 import Note = Types.Note;
 
@@ -42,9 +47,11 @@ const notes: Array<Note> = [];
 export const useNotesStore = defineStore("NotesStore", {
   state: () => ({
     notes,
+    notesLoaded: false,
   }),
   actions: {
     async getNotes() {
+      this.notesLoaded = false;
       onSnapshot(notesCollectionQuery, (querySnapshot) => {
         // We created this local array variable to store the notes we get from firebase.
         const notes: Array<Note> = [];
@@ -59,6 +66,7 @@ export const useNotesStore = defineStore("NotesStore", {
 
         // Here we are using the state property, notes, to set its value to the notes we got from firebase. Essentially, we are overwriting the state's notes array with the one we generated from Firebase.
         this.notes = notes;
+        this.notesLoaded = true;
       });
     },
     async addNote(newNoteContent: string) {
