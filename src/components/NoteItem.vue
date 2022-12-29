@@ -3,6 +3,7 @@
   imports
  */
 import { computed, PropType, reactive } from "vue";
+import { useDateFormat } from "@vueuse/core";
 import ModalDeleteNote from "@/components/NoteItemDeleteModal.vue";
 import Note = Types.Note;
 
@@ -14,6 +15,14 @@ const props = defineProps({
     type: Object as PropType<Note>,
     required: true,
   },
+});
+
+/*
+  date formatted
+ */
+const dateFormatted = computed(() => {
+  const date = new Date(parseInt(props.note.date));
+  return useDateFormat(date, "MM/DD/YYYY @ HH:mm").value;
 });
 
 /*
@@ -38,8 +47,9 @@ const modals = reactive({
       <div class="content">
         {{ props.note.content }}
       </div>
-      <div class="has-text-right has-text-grey-light mt-2">
-        <small>{{ characterLength }}</small>
+      <div class="columns is-mobile has-text-grey-light mt-2">
+        <small class="column">{{ dateFormatted }}</small>
+        <small class="column has-text-right">{{ characterLength }}</small>
       </div>
     </div>
     <footer class="card-footer">
