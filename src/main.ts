@@ -6,7 +6,7 @@ import { createApp } from "vue";
 // Here we're importing the root component from the components folder. This is the component that will be used to load any global components and will be the parent of all other components
 import App from "@/App.vue";
 
-// Here we're importing the router from the router folder. We need this router to be able to navigate between pages
+// Here we're importing the router from the router folder. We need this router to be able to navigate between views
 import router from "@/router";
 
 // Here we're importing the store from the store folder. We need this store to be able to share data between components

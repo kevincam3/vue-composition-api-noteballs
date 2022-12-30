@@ -4,22 +4,22 @@ const routes = [
   {
     path: "/",
     name: "notes",
-    component: () => import("@/pages/NoteList.vue"),
+    component: () => import("@/views/NoteList.vue"),
   },
   {
     path: "/editNote/:id",
     name: "edit-notes",
-    component: () => import("@/pages/NoteEdit.vue"),
+    component: () => import("@/views/NoteEdit.vue"),
   },
   {
     path: "/stats",
     name: "stats",
-    component: () => import("@/pages/NoteStats.vue"),
+    component: () => import("@/views/NoteStats.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "404",
-    component: () => import("@/pages/404.vue"),
+    component: () => import("@/views/404.vue"),
   },
 ];
 

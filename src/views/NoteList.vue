@@ -59,6 +59,11 @@ useWatchCharacters(newNote);
         :key="note.id"
         :note="note" />
     </div>
+    <div
+      v-if="!notesStore.notes.length"
+      class="is-size-4 has-text-centered has-text-grey-light is-family-monospace py-6">
+      No notes here yet...
+    </div>
     <!-- End: list all the notes below the form to add a new note -->
   </div>
 </template>
