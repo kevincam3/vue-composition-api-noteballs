@@ -3,7 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "notes",
+    name: "notes", // can use this name to navigate to this route. This will allow us to change the route path here and everywhere else in the app the link will change.
     component: () => import("@/views/NoteList.vue"),
   },
   {
@@ -15,6 +15,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/stats",
     name: "stats",
     component: () => import("@/views/NoteStats.vue"),
+  },
+  {
+    path: "/auth",
+    name: "auth",
+    component: () => import("@/views/LoginRegister.vue"),
   },
   {
     path: "/:pathMatch(.*)*",

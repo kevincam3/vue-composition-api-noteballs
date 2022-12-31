@@ -29,7 +29,7 @@ onClickOutside(navbarMenuRef, () => (showMobileNave.value = false), {
       <div class="navbar-brand">
         <div
           class="navbar-item is-size-4 is-family-monospace is-clickable"
-          @click="$router.push('/')">
+          @click="$router.push({ name: 'notes' })">
           Noteballs
         </div>
 

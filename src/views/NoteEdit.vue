@@ -29,7 +29,9 @@ noteContent.value = storeNotes.getNoteContent(route.params.id as string);
  */
 const handleSaveClicked = () => {
   storeNotes.updateNote(route.params.id as string, noteContent.value);
-  router.push("/");
+
+  // using a named route so that we can change the route path in the future and not have to change it here. Not to mention it would update everywhere else in the app that this named route is used.
+  router.push({ name: "notes" });
 };
 </script>
 <template>
