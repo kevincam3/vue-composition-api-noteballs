@@ -6,16 +6,20 @@ import { defineStore } from "pinia";
 /*
   Firebase imports
  */
-import { collection, onSnapshot, doc, deleteDoc, addDoc, updateDoc, query, orderBy } from "firebase/firestore";
-import { firestore } from "@/js/firebase";
-
-// This was done to DRY (Don't Repeat Yourself) up the code since in Firebase we access the collection multiple times
-// The collection is basically the table in a database, just in a NoSQL database like Firebase it's called a collection
-const notesCollectionRef = collection(firestore, "notes");
-
-// This is the firebase way of getting all the documents/rows in a collection/table.
-// We're using the orderBy function to sort the documents by the date field in descending order
-const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
+import {
+  collection,
+  onSnapshot,
+  doc,
+  deleteDoc,
+  addDoc,
+  updateDoc,
+  query,
+  orderBy,
+  CollectionReference,
+  Query,
+} from "firebase/firestore";
+import { db } from "@/js/firebase";
+import { useAuthStore } from "@/stores/AuthStore";
 
 /*
   Here we are using a typescript feature called "type aliasing" https://www.typescriptlang.org/docs/handbook/namespaces.html#aliases
@@ -24,6 +28,9 @@ const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
   Types here is the namespace we created in the Note type file
  */
 import Note = Types.Note;
+
+let notesCollectionRef: CollectionReference;
+let notesCollectionQuery: Query;
 
 /*
   Notes
@@ -50,6 +57,20 @@ export const useNotesStore = defineStore("NotesStore", {
     notesLoaded: false,
   }),
   actions: {
+    init() {
+      const authStore = useAuthStore();
+
+      // This was done to DRY (Don't Repeat Yourself) up the code since in Firebase we access the collection multiple times
+      // The collection is basically the table in a database, just in a NoSQL database like Firebase it's called a collection
+      notesCollectionRef = collection(db, "users", authStore.user.id, "notes");
+
+      // This is the firebase query. Here we're getting all the documents/rows in a collection/table.
+      // We're using the orderBy function to sort the documents by the date field in descending order
+      notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
+
+      // initialise our database refs
+      this.getNotes();
+    },
     async getNotes() {
       this.notesLoaded = false;
       onSnapshot(notesCollectionQuery, (querySnapshot) => {
