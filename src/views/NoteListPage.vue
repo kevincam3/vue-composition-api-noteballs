@@ -3,7 +3,7 @@
 /*
   imports
  */
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import Note from "@/components/NoteItem.vue";
 import AddEditNote from "@/components/NoteItemAddEdit.vue";
 import { useNotesStore } from "@/stores/NotesStore";
@@ -29,6 +29,13 @@ const addEditNoteRef = ref<AddEditNote | null>(null);
   watch characters
  */
 useWatchCharacters(newNote);
+
+/*
+  mounted
+ */
+onMounted(() => {
+  notesStore.getNotes();
+});
 </script>
 <template>
   <div class="notes">

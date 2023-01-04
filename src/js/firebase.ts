@@ -3,6 +3,9 @@
 // import the function needed to initialize the firebase app.
 import { initializeApp } from "firebase/app";
 
+// import the functions needed to initialize the firebase auth service.
+import { getAuth } from "firebase/auth";
+
 // import the functions needed to access the firestore database
 import { getFirestore } from "firebase/firestore";
 
@@ -16,10 +19,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase with the configuration settings defined above
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
 // Get the firestore instance needed to access the database
-const firestore = getFirestore(app);
+const firestore = getFirestore(firebaseApp);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(firebaseApp);
 
 // Export the database so it can be used in other files, specifically in our Pinia store
-export { firestore };
+export { firestore, auth };

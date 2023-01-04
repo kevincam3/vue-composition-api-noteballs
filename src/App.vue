@@ -3,19 +3,19 @@
   imports
  */
 import NavBar from "@/components/NavBar.vue";
-import { useNotesStore } from "@/stores/NotesStore";
+import { useAuthStore } from "@/stores/AuthStore";
 import { onMounted } from "vue";
 
 /*
   store
  */
-const { getNotes } = useNotesStore();
+const authStore = useAuthStore();
 
 /*
   mounted
  */
 onMounted(() => {
-  getNotes();
+  authStore.init();
 });
 </script>
 

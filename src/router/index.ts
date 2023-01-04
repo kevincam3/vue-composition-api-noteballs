@@ -4,22 +4,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "notes", // can use this name to navigate to this route. This will allow us to change the route path here and everywhere else in the app the link will change.
-    component: () => import("@/views/NoteList.vue"),
+    component: () => import("@/views/NoteListPage.vue"),
   },
   {
     path: "/editNote/:id",
     name: "edit-notes",
-    component: () => import("@/views/NoteEdit.vue"),
+    component: () => import("@/views/NoteEditPage.vue"),
   },
   {
     path: "/stats",
     name: "stats",
-    component: () => import("@/views/NoteStats.vue"),
+    component: () => import("@/views/NoteStatsPage.vue"),
   },
   {
     path: "/auth",
     name: "auth",
-    component: () => import("@/views/LoginRegister.vue"),
+    component: () => import("@/views/LoginRegisterPage.vue"),
   },
   {
     path: "/:pathMatch(.*)*",

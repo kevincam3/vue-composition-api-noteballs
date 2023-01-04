@@ -4,6 +4,7 @@
  */
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useAuthStore } from "@/stores/AuthStore";
 
 /*
   mobile nave
@@ -19,6 +20,19 @@ const navbarBurgerRef = ref(null);
 onClickOutside(navbarMenuRef, () => (showMobileNave.value = false), {
   ignore: [navbarBurgerRef],
 });
+
+/*
+  Auth store
+ */
+const authStore = useAuthStore();
+
+/*
+  logout
+ */
+const logout = () => {
+  showMobileNave.value = false;
+  authStore.logoutUser();
+};
 </script>
 <template>
   <nav
@@ -53,6 +67,14 @@ onClickOutside(navbarMenuRef, () => (showMobileNave.value = false), {
         id="navbarBasicExample"
         class="navbar-menu"
         :class="{ 'is-active': showMobileNave }">
+        <div class="navbar-start">
+          <button
+            v-if="authStore.isLoggedIn"
+            class="button is-small is-info mt-3 ml-3"
+            @click="logout">
+            Log out: {{ authStore.user?.email }}
+          </button>
+        </div>
         <div class="navbar-end">
           <RouterLink
             @click="showMobileNave = false"
