@@ -28,9 +28,12 @@ import { useAuthStore } from "@/stores/AuthStore";
   Types here is the namespace we created in the Note type file
  */
 import Note = Types.Note;
+import firebase from "firebase/compat";
+import Unsubscribe = firebase.Unsubscribe;
 
 let notesCollectionRef: CollectionReference;
 let notesCollectionQuery: Query;
+let getNotesSnapshot: Unsubscribe | null = null;
 
 /*
   Notes
@@ -72,8 +75,13 @@ export const useNotesStore = defineStore("NotesStore", {
       this.getNotes();
     },
     async getNotes() {
+      // this variable is to control the loading state of the notes. So when the notes are not loaded, we show a loading spinner
       this.notesLoaded = false;
-      onSnapshot(notesCollectionQuery, (querySnapshot) => {
+
+      // This is the firebase onSnapshot function. It's a listener that will listen for any changes to the database and update the notes array accordingly
+      // We are assigning the unsubscribe function to a variable so that we can call it when the user logs out so that we don't have multiple listeners running
+      // If we don't unsubscribe then when another user logs in and adds a note it will display the notes from the previous user that was logged in.
+      getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot) => {
         // We created this local array variable to store the notes we get from firebase.
         const notes: Array<Note> = [];
         querySnapshot.forEach((doc) => {
@@ -106,6 +114,12 @@ export const useNotesStore = defineStore("NotesStore", {
       await updateDoc(doc(notesCollectionRef, id), {
         content,
       });
+    },
+    clearNotes() {
+      this.notes = [];
+
+      // Here we are checking if there is already a snapshot listener on the notes collection and if there is then we unsubscribe from it. This is to prevent multiple listeners on the same collection
+      if (getNotesSnapshot) getNotesSnapshot();
     },
   },
   getters: {

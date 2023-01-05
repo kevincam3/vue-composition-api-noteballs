@@ -26,6 +26,9 @@ export const useAuthStore = defineStore("AuthStore", {
 
           // were using replace here instead of push because we don't want the user to be able to go back to the auth page. So replace will change the browser history and remove the auth page from the history stack
           this.router.replace({ name: "auth" });
+
+          // we also need to clear the user's notes saved in the store when the user logs out
+          notesStore.clearNotes();
         }
       });
     },
@@ -33,30 +36,20 @@ export const useAuthStore = defineStore("AuthStore", {
       createUserWithEmailAndPassword(auth, credentials.email, credentials.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          // console.log("User created: ", user);
         })
-        .catch((error) => {
-          // console.log("error.message", error.message);
-        });
+        .catch((error) => {});
     },
     loginUser(credentials: Credentials) {
       signInWithEmailAndPassword(auth, credentials.email, credentials.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          //  console.log("User logged in: ", user);
         })
-        .catch((error) => {
-          //  console.log("error.message", error.message);
-        });
+        .catch((error) => {});
     },
     logoutUser() {
       signOut(auth)
-        .then(() => {
-          // console.log("User signed out");
-        })
-        .catch((error) => {
-          // console.log("error.message", error.message);
-        });
+        .then(() => {})
+        .catch((error) => {});
     },
   },
   getters: {
