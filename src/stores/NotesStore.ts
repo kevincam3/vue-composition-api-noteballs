@@ -81,22 +81,28 @@ export const useNotesStore = defineStore("NotesStore", {
       // This is the firebase onSnapshot function. It's a listener that will listen for any changes to the database and update the notes array accordingly
       // We are assigning the unsubscribe function to a variable so that we can call it when the user logs out so that we don't have multiple listeners running
       // If we don't unsubscribe then when another user logs in and adds a note it will display the notes from the previous user that was logged in.
-      getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot) => {
-        // We created this local array variable to store the notes we get from firebase.
-        const notes: Array<Note> = [];
-        querySnapshot.forEach((doc) => {
-          let note: Note = {
-            id: doc.id,
-            date: doc.data().date,
-            content: doc.data().content,
-          };
-          notes.push(note);
-        });
+      getNotesSnapshot = onSnapshot(
+        notesCollectionQuery,
+        (querySnapshot) => {
+          // We created this local array variable to store the notes we get from firebase.
+          const notes: Array<Note> = [];
+          querySnapshot.forEach((doc) => {
+            let note: Note = {
+              id: doc.id,
+              date: doc.data().date,
+              content: doc.data().content,
+            };
+            notes.push(note);
+          });
 
-        // Here we are using the state property, notes, to set its value to the notes we got from firebase. Essentially, we are overwriting the state's notes array with the one we generated from Firebase.
-        this.notes = notes;
-        this.notesLoaded = true;
-      });
+          // Here we are using the state property, notes, to set its value to the notes we got from firebase. Essentially, we are overwriting the state's notes array with the one we generated from Firebase.
+          this.notes = notes;
+          this.notesLoaded = true;
+        },
+        (error) => {
+          console.log("error.message", error.message);
+        }
+      );
     },
     async addNote(newNoteContent: string) {
       let date = new Date().getTime().toString();

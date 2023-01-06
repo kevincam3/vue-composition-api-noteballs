@@ -37,7 +37,6 @@ const router = createRouter({
 // navigation guards
 router.beforeEach(async (to, from) => {
   const authStore = useAuthStore();
-  console.log("to", to);
   if (!authStore.isLoggedIn && to.name !== "auth") {
     return { name: "auth" };
   }
