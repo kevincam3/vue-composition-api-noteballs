@@ -23,13 +23,14 @@ import { useAuthStore } from "@/stores/AuthStore";
 
 /*
   Here we are using a typescript feature called "type aliasing" https://www.typescriptlang.org/docs/handbook/namespaces.html#aliases
-  Note this is not a normal import statement, it is a type aliasing statement.
+  Note this is not a normal import statement, it is a type aliasing statement to help import a type included in a namespace.
   Here we're importing the Note type from the Note type file. This is the type that we will use to define the notes in the store
   Types here is the namespace we created in the Note type file
  */
 import Note = Types.Note;
-import firebase from "firebase/compat";
-import Unsubscribe = firebase.Unsubscribe;
+
+// Here we are importing the "Unsubscribe" type from the firebase library so that we can define the type returned by the onSnapshot function.
+import { Unsubscribe } from "@firebase/firestore";
 
 let notesCollectionRef: CollectionReference;
 let notesCollectionQuery: Query;
