@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --open"
   },
   "dependencies": {
     "@vueuse/core": "^9.6.0",
